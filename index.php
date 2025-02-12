@@ -1,21 +1,20 @@
 <?php 
+	require_once("vendor/autoload.php");
 
-require_once("vendor/autoload.php");
+	use \Slim\Slim;
+	use \Hcode\Page;
 
-$app = new \Slim\Slim();
+	$app = new Slim();
 
-$app->config('debug', true);
+	$app->config('debug', true);
 
-$app->get('/', function() {
-    
-	$sql = new Hcode\DB\Sql();
+	$app->get('/', function() {
+		
+		$page = new Page(); // Instancia a classe e no construct, chama o Header;
 
-	$results = $sql->select("SELECT * FROM tb_users");
+		$page->setTpl("index"); // Chama o index, entre o Header e o Footer.
 
-	echo json_encode($results);
+	}); // No final, quando a memória for ser limpada o desctruct é executado e é chamado Footer.
 
-});
-
-$app->run();
-
- ?>
+	$app->run();
+?>
