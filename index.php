@@ -3,6 +3,7 @@
 
 	use \Slim\Slim;
 	use \Hcode\Page;
+	use \Hcode\PageAdmin;
 
 	$app = new Slim();
 
@@ -11,6 +12,15 @@
 	$app->get('/', function() {
 		
 		$page = new Page(); // Instancia a classe e no construct, chama o Header;
+
+		$page->setTpl("index"); // Chama o index, entre o Header e o Footer.
+
+	}); // No final, quando a memória for ser limpada o desctruct é executado e é chamado Footer.
+
+
+	$app->get('/admin', function() {
+		
+		$page = new PageAdmin(); // Instancia a classe e no construct, chama o Header;
 
 		$page->setTpl("index"); // Chama o index, entre o Header e o Footer.
 

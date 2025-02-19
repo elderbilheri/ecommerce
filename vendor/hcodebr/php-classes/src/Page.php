@@ -13,14 +13,14 @@
         ];
 
         // Método construtor
-        public function __construct($opts = array())
+        public function __construct($opts = array(), $tpl_dir = "/views/")
         {
             // Faz o merge dos arrays, caso não tenha nenhum array o "deaults será utilizado, se não, valerá o que vier do parâmetro.
             $this->options = array_merge($this->defaults, $opts);
 
             // config
             $config = array(
-                "tpl_dir"    => $_SERVER['DOCUMENT_ROOT']."/views/",
+                "tpl_dir"    => $_SERVER['DOCUMENT_ROOT'].$tpl_dir,
                 "cache_dir"  => $_SERVER['DOCUMENT_ROOT']."/views-cache/",
                 "debug"      => false // set to false to improve the speed
             );
