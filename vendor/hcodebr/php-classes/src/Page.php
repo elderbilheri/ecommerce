@@ -9,6 +9,8 @@
         private $tpl;
         private $options = [];
         private $defaults = [
+            "header" => true,
+            "footer" => true,
             "data" => []
         ];
 
@@ -31,7 +33,7 @@
 
             $this->setData($this->options['data']);
 
-            $this->tpl->draw("header"); // Método do TPL que que desenha/cria o layout.
+            if ($this->options['header'] === true) $this->tpl->draw("header"); // Método do TPL que que desenha/cria o layout.
         }
 
         // Método que seta os dados para o assign do TPL.
@@ -53,7 +55,7 @@
         // Método destrutor
         public function __destruct()
         {
-            $this->tpl->draw("footer");
+            if ($this->options['footer'] === true) $this->tpl->draw("footer");
         }
 
     }
